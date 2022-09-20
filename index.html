@@ -106,9 +106,13 @@
                     <h2>Busqueda</h2>
                 </div>    
                 <div class="inputs">
-                    <label for="input1">Producto</label>
-                    <input id="input1" type="text" >
-                    <label for="input2">material</label>
+                    <select name="producto" id="input1">
+                        <option value="" disabled selected>Seleccione el Producto</option>
+                        <option value="Puerta" id="input1">Puerta</option>
+                        <option value="Silla" id="input1">Silla</option>
+                        <option value="Alfombra" id="input1">Alfombra</option>
+                    </select>
+                    <label for="input2">precios menores a: </label>
                     <input id="input2" type="text">
                     <button id="search">Buscar</button>
                 </div>

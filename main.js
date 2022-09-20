@@ -155,27 +155,37 @@ for (const alfombra of alfom) {
     art3.append(articulo);
 }
 
+/////////////////////////////////////////////////////////////////////////
 
+// procesode busqueda
 
 const search = document.querySelector("#search");
 
 
 // se llama filtrar precio pero en realidad filtra material por el momento
-function filtrarPrecios(arr, filtro) {
+function filtrarPreciosMenores(arr, filtro) {
     const filtrado = arr.filter((el)=>{
-        return el.material.includes(filtro);
+        return el.precio <= filtro;
     });
     return filtrado;
 }
 
 
-search.addEventListener("click", ()=>{
 
-    if (input1.value.toLowerCase() == "silla") {
+
+
+search.addEventListener("click", ()=>{
+    // valor ingresado en input2
+    let input2 = document.getElementById("input2").value;
+    let input1 = document.getElementById("input1").value.toLowerCase();
+    console.log(input1);
+
+
+    if (input1 == "silla" ) {
         console.log("sillas");
-        let resultado = filtrarPrecios(sill, input2.value.toLowerCase())
+        let resultado = filtrarPreciosMenores(sill, input2)
         console.log(resultado);
-        console.log(input2.value.toLowerCase());
+        console.log(input2);
         for (const el of resultado) {
             let articulo = document.createElement('article');
             articulo.innerHTML = `<article class="card">
@@ -191,7 +201,7 @@ search.addEventListener("click", ()=>{
                             Estilo: ${el.tipo}
                         </h3>
                         <h3>
-                            PRECIO: ${silla.precio}
+                            PRECIO: ${el.precio}
                         </h3>
                         <button>
                             comprar
@@ -203,15 +213,15 @@ search.addEventListener("click", ()=>{
                 </div>
             </article>`
 
-            art4.append(articulo);
+            art4.append(articulo);         
         }
-    } else if (input1.value.toLowerCase() == "puerta") {
+
+    } else if (input1 == "puerta") {
         console.log("puertas");
-        let resultado = filtrarPrecios(puert, input2.value.toLowerCase())
+        let resultado = filtrarPreciosMenores(puert, input2)
         console.log(resultado);
-        console.log(input2.value.toLowerCase());
-        for (const el of resultado) {
-            let articulo = document.createElement('article');
+        console.log(input2);
+        for (const el of resultado) {            let articulo = document.createElement('article');
             articulo.innerHTML = `<article class="card">
                 <div class="con-text">
                     <img src="../imagenes/tarjetas/${el.imagen}" alt="">
@@ -242,15 +252,14 @@ search.addEventListener("click", ()=>{
     } else {
 
         console.log("alfombras");
-        let resultado = filtrarPrecios(alfom, input2.value.toLowerCase())
+        let resultado = filtrarPreciosMenores(alfom, input2)
         console.log(resultado);
-        console.log(input2.value.toLowerCase());
+        console.log(input2);
         for (const el of resultado) {
             let articulo = document.createElement('article');
             articulo.innerHTML = `<article class="card">
                 <div class="con-text">
-                    <img src="../imagenes/tarjetas/${el.imagen}" alt="">
-                    
+                    <img src="../imagenes/tarjetas/${el.imagen}" alt=              
                     <div>
                         <h2>
                             Alfombra
@@ -275,7 +284,6 @@ search.addEventListener("click", ()=>{
             art4.append(articulo);
         }
     }
-
 
 });
 
